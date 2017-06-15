@@ -1,0 +1,45 @@
+$ git branch --set-upstream feature_v0.1 origin/feature
+The --set-upstream flag is deprecated and will be removed. Consider using --track or --set-upstream-to
+Branch feature_v0.1 set up to track remote branch feature from origin.
+
+
+
+$ git push
+fatal: The upstream branch of your current branch does not match
+the name of your current branch.  To push to the upstream branch
+on the remote, use
+
+    git push origin HEAD:feature
+
+To push to the branch of the same name on the remote, use
+
+    git push origin feature_v0.1 （提交本地分支到远程分支）
+
+To choose either option permanently, see push.default in 'git help config'.
+
+
+-------------------------------------------------------------------------------------------------------------
+git stash
+git pull
+git stash pop
+git push
+
+------------------------------------------------------------------------------------------------------------
+git branch -al
+git checkout -b 
+
+------------------------------------------------------------------------------------------------------------
+
+查看
+
+git branch -a
+
+删除远程分支
+git branch -r -d origin/branch-name
+git push origin :branch-name
+
+------------------------------------------------------------------------------------------------------------
+跟踪上游分支
+git branch --set-upstream debug origin/debug  
+（Consider using --track or --set-upstream）
+
