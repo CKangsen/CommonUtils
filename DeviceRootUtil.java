@@ -9,11 +9,14 @@ import java.io.InputStreamReader;
 /**
  * Created by cks on 18-3-29.
  *
- * 可行 isDeviceRooted 检测su文件是否存在
+ * 可行 isContainSu 检测su文件是否存在
  *
- * 不可行 isRoot2 查询su文件的权限，其他用户无权限，需要shell用户或root用户
+ * 不可行 isAllowSuExecutable 查询su文件的权限，其他用户无权限，需要shell用户或root用户
  *
- * 不可行 isRoot3 执行su，其他用户无权限，需要shell用户或root用户
+ * 不可行 isAllowAppRoot 执行su，其他用户无权限，需要shell用户或root用户
+ *
+ * isContainSu 返回true时设备可获取adb root权限
+ * isAllowAppRoot 返回true时App可获取root权限
  */
 
 public class DeviceRootUtil {
@@ -31,7 +34,7 @@ public class DeviceRootUtil {
      *
      * @return the boolean{@code true}: 是<br>{@code false}: 否
      */
-    public static boolean isDeviceRooted() {
+    public static boolean isContainSu() {
         String su = "su";
         String[] locations = {"","/system/bin/", "/system/xbin/", "/sbin/", "/system/sd/xbin/", "/system/bin/failsafe/",
                 "/data/local/xbin/", "/data/local/bin/", "/data/local/"};
@@ -45,7 +48,7 @@ public class DeviceRootUtil {
     }
 
     /** 判断手机是否root，不弹出root请求框<br/> */
-    public static boolean isRoot2() {
+    public static boolean isAllowSuExecutable() {
         String[] filePaths = su_paths;
         for (String path: filePaths) {
             if (new File(path).exists() && isExecutable(path))
@@ -87,7 +90,7 @@ public class DeviceRootUtil {
         return false;
     }
 
-    public static boolean isRoot3(){
+    public static boolean isAllowAppRoot(){
         for (String path: su_paths) {
             if (isSuExecutable(path))
                 return true;
